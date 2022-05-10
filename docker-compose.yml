@@ -1,6 +1,14 @@
 services:
   frontend:
     buid: ./frontend
+    container_name: ebyrt_frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
   backend:
     build: ./backend
+    container_name: ebyrt_backend
+    ports:
+      - 3001:3001
   db:
