@@ -1,0 +1,22 @@
+{
+  "name": "ebyrt-organiza",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compose:up": "docker-compose up -d --build",
+    "compose:down": "docker-compose down --remove-orphans"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Effolex/ebyrt-organiza.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Effolex/ebyrt-organiza/issues"
+  },
+  "homepage": "https://github.com/Effolex/ebyrt-organiza#readme"
+}
