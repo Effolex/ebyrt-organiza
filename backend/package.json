@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/index.js",
+    "start": "npx -y tsc && node .",
     "dev": "ts-node-dev --ignore-watch node_modules server/index.ts"
   },
   "keywords": [],
