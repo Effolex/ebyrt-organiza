@@ -51,7 +51,7 @@ user [
 **Create User**
 ----
 Create a user at the database.
->  <strong>POST</strong> /user/create - Body <i>required</i>
+>  <strong>`POST`</strong> /user/create - Body <i>required</i>
 <details close>
 <summary>Detailed Info</summary>
 
@@ -65,7 +65,6 @@ Create a user at the database.
 * **Body Params**
 *Required:*
 
-*Required:*
 ```json
 {
     "email": "string",
