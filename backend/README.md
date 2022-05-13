@@ -81,6 +81,8 @@ Create a user at the database.
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ error: "The field [field] was not provided or was invalid" }`
+  * **Code:** 409 CONFLICT <br />
+  **Content:** `{ error: "The Email is already registered" }`
 
 * **Sample body:**
 
