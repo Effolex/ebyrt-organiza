@@ -75,10 +75,8 @@ export default class TaskService {
           id,
         }
       });
-      console.log("🚀 ~ file: task.ts ~ line 74 ~ TaskService ~ publicdelete ~ deleted", deleted)
       return [200, deleted];
     } catch (error) {
-      console.log("🚀 ~ file: task.ts ~ line 76 ~ TaskService ~ publicdelete ~ error", error)
       throw error;
     }
   }
@@ -108,7 +106,6 @@ export default class TaskService {
         where: { id },
         data: { title, status, description },
       });
-      console.log("🚀 ~ file: user.ts ~ line 58 ~ UserService ~ editName= ~ users", task);
       return [ 201, { message: 'User successfully updated' }];
     } catch (error) {
       throw error;

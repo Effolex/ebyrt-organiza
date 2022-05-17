@@ -55,7 +55,6 @@ export default class UserService {
         where: { email },
         data: { name },
       });
-      console.log("🚀 ~ file: user.ts ~ line 58 ~ UserService ~ editName= ~ users", users);
       return [ 201, { message: 'User successfully updated' }];
     } catch (error) {
       throw error;
