@@ -4,3 +4,8 @@ export interface IUser {
   name?: string,
   password: string,
 }
+
+export interface IUserReq {
+  email: string,
+  name: string,
+}

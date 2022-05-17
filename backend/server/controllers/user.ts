@@ -1,4 +1,5 @@
 import { RequestHandler } from 'express';
+import { IUserReq } from '../interfaces/IUser';
 import authentication from '../services/authentication';
 import UserService from '../services/user';
 
@@ -20,8 +21,9 @@ export default class UserController {
 
   public editName: RequestHandler = async (req, res, _next) => {
     const { name } = req.body;
+    const { email } = req.user as IUserReq;
     try {
-      const [ status, body ] = await this.userService.create(name);
+      const [ status, body ] = await this.userService.editName(name, email);
       
       return res.status(status).json(body);
     } catch (error) {
