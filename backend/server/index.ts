@@ -1,4 +1,4 @@
-import { RequestHandler } from "express";
+import { route } from "./routes";
 const express = require("express");
 const dotnev = require('dotenv');
 
@@ -9,11 +9,7 @@ const port = process.env.PORT || 3001;
 
 app.use(express.json());
 
-const testRequest: RequestHandler = (_req, res) => {
-  res.status(200).json({ message: 'Back-end created'});
-}
-
-app.get('/', testRequest);
+app.use(route);
 
 app.listen(port, () => {
 console.log("🚀 [server]: Server is running at port: ", port)

@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// npx prisma migrate dev --name init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id  Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  title String
+  status String
+  description String
+  tags Tag[]
+  author User @relation(fields: [authorId], references: [id])
+  authorId Int
+}
+
+model Tag {
+  id  Int @id @default(autoincrement())
+  name String
+  author User @relation(fields: [authorId], references: [id])
+  authorId Int
+  tasks Task @relation(fields: [taskId], references: [id])
+  taskId Int
+}
+
+model User {
+  id  Int @id @default(autoincrement())
+  email  String @unique
+  name String?
+  tags Tag[]
+  tasks Task[]
+  password  String
+}
