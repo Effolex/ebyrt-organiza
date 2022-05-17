@@ -8,7 +8,7 @@ interface IFailedResponseBody {
 
 type IResponse = ISuccessfullResponseBody | IFailedResponseBody;
 
-type TupleResponse = [number, IResponse];
+type TupleResponse = [number, IResponse | any];
 
 // [ 200, { error } ]
 
