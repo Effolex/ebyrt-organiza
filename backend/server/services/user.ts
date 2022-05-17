@@ -49,6 +49,19 @@ export default class UserService {
     }
   }
 
+  public editName = async (name, email): Promise<TupleResponse> => {
+    try {
+      const users = await prisma.user.update({
+        where: { email },
+        data: { name },
+      });
+      console.log("🚀 ~ file: user.ts ~ line 58 ~ UserService ~ editName= ~ users", users);
+      return [ 201, { message: 'User successfully updated' }];
+    } catch (error) {
+      throw error;
+    }
+  }
+
   public login = async ({ email, password }:IUser ): Promise<IUser | undefined> => {
     try {
       const userRetrieved = await prisma.user.findUnique({ where: { email } });
