@@ -1,7 +1,9 @@
 import React, { ChangeEvent, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { setInterval } from 'timers/promises';
 import { TodoContextType } from '../../@types/Todo';
 import { todoContext } from '../../context/todoContext';
+import fetchWithTimeout from '../../helper/fetchWithTimeout';
 import style from './login.module.css';
 
 export default function Login() {
@@ -24,22 +26,28 @@ export default function Login() {
 
   const login = async () => {
     setLoading(true);
-    const response = await fetch(`${process.env.REACT_APP_URL}/user/login`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
-    const json = await response.json();
-    setLoading(false);
-    if (!response.ok) {
-      setError(json);
-      return;
+    try {
+      const response = await fetchWithTimeout(`${process.env.REACT_APP_URL}/user/login`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+        timeout: 8000,
+      });
+      const json = await response.json();
+      setLoading(false);
+      if (!response.ok) {
+        setError(json);
+        return;
+      }
+      setUser({ ...json.user, token: json.token });
+      navigate('../dashboard');
+    } catch (e) {
+      setError({ error: 'Request Timeout!' });
+      setLoading(false);
     }
-    setUser({ ...json.user, token: json.token });
-    navigate('../dashboard');
   };
 
   return (

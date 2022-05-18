@@ -1,0 +1,47 @@
+.window {
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(0, 0, 0, 0.363);
+  backdrop-filter: blur(20px);
+  border-radius: 15px;
+  width: 90vw;
+  height: 90vh;
+}
+
+.sideMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 15px 0px 0px 15px;
+  width: 10vw;
+  min-width: 150px;
+  background-color: rgba(22, 7, 43, 0.774);
+  color: rgb(206, 206, 206);
+  filter: opacity(60%);
+
+
+}
+
+.userInfo {
+  width: 60%;
+  padding: 0 20%;
+  border-bottom: 1px solid rgb(206, 206, 206);
+}
+.sideMenu > a {
+  border: 0;
+  margin: 10px 0;
+  text-decoration: none;
+  color: inherit;
+  transition: width 0.2s ease-in-out;
+}
+
+.sideMenu > a:hover {
+  border: 0;
+  background-color: rgba(22, 7, 43, 0.774);
+  color: rgb(206, 206, 206);
+  width: 100%;
+  font-size: 20px;
+  filter: opacity(60%);
+  transition: width 0.2s ease-in-out;
+}

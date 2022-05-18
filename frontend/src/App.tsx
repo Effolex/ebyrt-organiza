@@ -5,6 +5,8 @@ import styles from './styles/App.module.css';
 import video from './assets/backgroundPattern.mp4';
 import TodoProvider from './context/todoContext';
 import Dashboard from './pages/dashboard/Dashboard';
+import Main from './pages/dashboard/components/main/Main';
+import NewTask from './pages/dashboard/components/newTask/NewTask';
 
 function App() {
   return (
@@ -19,7 +21,11 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="" element={<Main />} />
+              <Route path="edit" element={<h1>bbbbbb</h1>} />
+              <Route path="new" element={<NewTask />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </div>

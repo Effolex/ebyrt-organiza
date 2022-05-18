@@ -1,22 +1,26 @@
+/* eslint-disable react/function-component-definition */
 import React, { useContext } from 'react';
+import { Outlet, Link } from 'react-router-dom';
 import { TodoContextType } from '../../@types/Todo';
 import { todoContext } from '../../context/todoContext';
 import style from './dashboard.module.css';
+import { ReactComponent as UserSVG } from '../../assets/user.svg';
 
-function Dashboard() {
+const Dashboard = () => {
   const { user } = useContext(todoContext) as TodoContextType;
-  console.log('🚀 ~ file: Dashboard.tsx ~ line 8 ~ Dashboard ~ user', user);
   return (
     <div className={style.window}>
       <div className={style.sideMenu}>
+        <UserSVG />
         <div className={style.userInfo}>
           <p>{user?.name}</p>
         </div>
-        <p>Add new</p>
-        <p>Add</p>
+        <Link to="new">Add new</Link>
+        <Link to="settings">Settings</Link>
       </div>
+      <Outlet />
     </div>
   );
-}
+};
 
 export default Dashboard;
