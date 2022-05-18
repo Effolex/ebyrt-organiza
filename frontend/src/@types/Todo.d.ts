@@ -29,4 +29,5 @@ export type TodoContextType = {
   user: IUser | undefined,
   setUser: (user: IUser) => void;
   setTasks: (tasks: ITask[]) => void;
+  setReload: (bool: boolean) => void;
 };

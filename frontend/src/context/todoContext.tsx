@@ -11,8 +11,12 @@ interface MyContextProps {
 const TodoProvider:React.FC<MyContextProps> = ({ children }) => {
   const [tasks, setTasks] = useState<ITask[] | never[]>([]);
   const [user, setUser] = useState<IUser | undefined>();
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
+    if (!reload || !user?.token) {
+      return;
+    }
     if (user?.token) {
       (async () => {
         const response = await fetch(`${process.env.REACT_APP_URL}/task/get`, {
@@ -28,14 +32,16 @@ const TodoProvider:React.FC<MyContextProps> = ({ children }) => {
           setTasks(data);
         }
       })();
+      setReload(false);
     }
-  }, [user]);
+  }, [user, reload]);
 
   const values:TodoContextType = useMemo(() => ({
     tasks,
     user,
     setUser,
     setTasks,
+    setReload,
   }), [user, tasks]);
 
   return (
