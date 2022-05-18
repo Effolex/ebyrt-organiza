@@ -47,9 +47,10 @@ export default class taskController {
     }
   }
 
-  public getAll: RequestHandler = async (_req, res, _next) => {
+  public getAll: RequestHandler = async (req, res, _next) => {
+    const { email } = req.user as IUserReq;
     try {
-      const [ status, body ] = await this.service.getAll();
+      const [ status, body ] = await this.service.getAll(email);
       return res.status(status).json(body);
     } catch (error) {
       return res.status(500).json({ error: 'Internal error' });
