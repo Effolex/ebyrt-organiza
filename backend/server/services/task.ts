@@ -81,11 +81,15 @@ export default class TaskService {
     }
   }
   
-  public getAll = async (): Promise<TupleResponse> => {
+  public getAll = async (email:string): Promise<TupleResponse> => {
     try {
       const task = await prisma.task.findMany({
+        where: {
+          author: {
+            email
+          }
+        },
         include: {
-          author: true,
           tags: true,
         }
       });
