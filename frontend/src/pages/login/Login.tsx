@@ -81,7 +81,7 @@ export default function Login() {
         ) : (
           <div className={style['button-container']}>
             <button onClick={login} type="button" className={style['login-button']}>Enter</button>
-            <button type="button" className={style['login-button']}>Sign In</button>
+            <button onClick={() => navigate('/signin')} type="button" className={style['login-button']}>Sign In</button>
           </div>
         )}
     </div>
