@@ -9,8 +9,8 @@ interface MyContextProps {
 }
 
 const TodoProvider:React.FC<MyContextProps> = ({ children }) => {
-  const [tasks, setTasks] = useState<ITask[] | never[]>([]);
-  const [user, setUser] = useState<IUser | undefined>();
+  const [tasks, setTasks] = useState<ITask[]>([]);
+  const [user, setUser] = useState<IUser>();
   const [reload, setReload] = useState(false);
 
   useEffect(() => {

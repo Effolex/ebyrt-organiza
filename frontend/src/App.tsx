@@ -7,6 +7,8 @@ import TodoProvider from './context/todoContext';
 import Dashboard from './pages/dashboard/Dashboard';
 import Main from './pages/dashboard/components/main/Main';
 import NewTask from './pages/dashboard/components/newTask/NewTask';
+import EditTask from './pages/dashboard/components/editTask/EditTask';
+import SignIn from './pages/signin/SignIn';
 
 function App() {
   return (
@@ -21,10 +23,12 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/signin" element={<SignIn />} />
             <Route path="/dashboard" element={<Dashboard />}>
               <Route path="" element={<Main />} />
               <Route path="edit" element={<h1>bbbbbb</h1>} />
               <Route path="new" element={<NewTask />} />
+              <Route path=":id/edit" element={<EditTask />} />
             </Route>
           </Routes>
         </BrowserRouter>
