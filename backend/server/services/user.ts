@@ -49,7 +49,7 @@ export default class UserService {
     }
   }
 
-  public editName = async (name, email): Promise<TupleResponse> => {
+  public editName = async (name: string, email: string): Promise<TupleResponse> => {
     try {
       const users = await prisma.user.update({
         where: { email },
