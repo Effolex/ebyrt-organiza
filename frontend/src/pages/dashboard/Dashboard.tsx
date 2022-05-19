@@ -16,7 +16,9 @@ const Dashboard = () => {
           <p>{user?.name}</p>
         </div>
         <Link to="new">Add new</Link>
+        <Link to=" ">List All</Link>
         <Link to="settings">Settings</Link>
+        <Link to="/">Log Out</Link>
       </div>
       <Outlet />
     </div>
