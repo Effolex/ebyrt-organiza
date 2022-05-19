@@ -1,25 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import Login from './pages/login/Login';
+import styles from './styles/App.module.css';
+import video from './assets/backgroundPattern.mp4';
+import TodoProvider from './context/todoContext';
+import Dashboard from './pages/dashboard/Dashboard';
+import Main from './pages/dashboard/components/main/Main';
+import NewTask from './pages/dashboard/components/newTask/NewTask';
+import EditTask from './pages/dashboard/components/editTask/EditTask';
+import SignIn from './pages/signin/SignIn';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TodoProvider>
+      <div className={styles.global}>
+        <div className={styles.videoContainer}>
+          <video width="320" height="240" autoPlay loop muted>
+            <source src={video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="" element={<Main />} />
+              <Route path="edit" element={<h1>bbbbbb</h1>} />
+              <Route path="new" element={<NewTask />} />
+              <Route path=":id/edit" element={<EditTask />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </TodoProvider>
   );
 }
 

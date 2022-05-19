@@ -21,11 +21,11 @@ export default class taskController {
   };
 
   public edit: RequestHandler = async (req, res, _next) => {
-    const { title, status, description } = req.body;
+    const { title, status, description, tags } = req.body;
     const { id } = req.params;
     const { email } = req.user as IUserReq;
     try {
-      const [ statusReq, body ] = await this.service.edit({ id:+id, title, status, description }, email);
+      const [ statusReq, body ] = await this.service.edit({ id:+id, title, status, description, tags }, email);
       
       return res.status(statusReq).json(body);
     } catch (error) {
@@ -47,9 +47,10 @@ export default class taskController {
     }
   }
 
-  public getAll: RequestHandler = async (_req, res, _next) => {
+  public getAll: RequestHandler = async (req, res, _next) => {
+    const { email } = req.user as IUserReq;
     try {
-      const [ status, body ] = await this.service.getAll();
+      const [ status, body ] = await this.service.getAll(email);
       return res.status(status).json(body);
     } catch (error) {
       return res.status(500).json({ error: 'Internal error' });

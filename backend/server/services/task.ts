@@ -81,11 +81,15 @@ export default class TaskService {
     }
   }
   
-  public getAll = async (): Promise<TupleResponse> => {
+  public getAll = async (email:string): Promise<TupleResponse> => {
     try {
       const task = await prisma.task.findMany({
+        where: {
+          author: {
+            email
+          }
+        },
         include: {
-          author: true,
           tags: true,
         }
       });
@@ -95,19 +99,30 @@ export default class TaskService {
     }
   }
 
-  public edit = async ({ id, title, status, description}:ITaskReq, email: string): Promise<TupleResponse> => {
+  public edit = async ({ id, title, status, description, tags }:ITaskReq, _email: string): Promise<TupleResponse> => {
     try {
       const exists = await prisma.task.findUnique({ where: { id }});
       if (!exists) {
         return [ 400, { message: 'Task does not exist' }];
       }
-
+      if (tags) {
+        await prisma.tag.deleteMany({where: { taskId:id }})
+        const promToAwait = tags.map((tag) => prisma.tag.create({
+          data: {
+            name: tag,
+            taskId: id as number,
+            authorId: exists.authorId,
+          }
+        }))
+        Promise.all(promToAwait);
+      }
       const task = await prisma.task.update({
         where: { id },
         data: { title, status, description },
       });
       return [ 201, { message: 'User successfully updated' }];
     } catch (error) {
+      console.log('🚀 ~ file: task.ts ~ line 124 ~ TaskService ~ edit= ~ error', error)
       throw error;
     }
   }
