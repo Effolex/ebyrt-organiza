@@ -14,7 +14,7 @@ const TodoProvider:React.FC<MyContextProps> = ({ children }) => {
   const [reload, setReload] = useState(false);
 
   useEffect(() => {
-    if (!reload || !user?.token) {
+    if (!reload && tasks.length) {
       return;
     }
     if (user?.token) {
