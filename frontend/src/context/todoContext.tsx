@@ -30,19 +30,20 @@ const TodoProvider:React.FC<MyContextProps> = ({ children }) => {
         if (response.ok) {
           const data = await response.json();
           setTasks(data);
+          setReload(false);
         }
       })();
-      setReload(false);
     }
   }, [user, reload]);
 
   const values:TodoContextType = useMemo(() => ({
     tasks,
     user,
+    reload,
     setUser,
     setTasks,
     setReload,
-  }), [user, tasks]);
+  }), [user, tasks, reload]);
 
   return (
     <todoContext.Provider value={values}>

@@ -27,6 +27,7 @@ export interface IUser {
 export type TodoContextType = {
   tasks: ITask[] | never[];
   user: IUser | undefined,
+  reload: boolean,
   setUser: (user: IUser) => void;
   setTasks: (tasks: ITask[]) => void;
   setReload: (bool: boolean) => void;

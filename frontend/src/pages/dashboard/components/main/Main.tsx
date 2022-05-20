@@ -24,7 +24,9 @@ const changeStatus = (arrow: string, status: string) => {
 };
 
 function Main() {
-  const { tasks, user, setReload } = useContext(todoContext) as TodoContextType;
+  const {
+    tasks, user, setReload, reload,
+  } = useContext(todoContext) as TodoContextType;
   const navigate = useNavigate();
   const [inProgress, setInProgress] = useState<ITask[]>([]);
   const [pending, setPending] = useState<ITask[]>([]);
@@ -159,6 +161,14 @@ function Main() {
 
   return (
     <div className={style.exteriorContainer}>
+      {(reload) && (
+      <div className={style.loadingio}>
+        <div className={style.ldio}>
+          <div />
+          <div />
+        </div>
+      </div>
+      )}
       <div className={style.filterContainer}>
         <h1>Filter by:</h1>
         <button
@@ -198,6 +208,13 @@ function Main() {
             ))}
           </select>
         </label>
+        <button
+          className={style.reload}
+          onClick={() => setReload(true)}
+          type="button"
+        >
+          Reload Data
+        </button>
       </div>
       <div className={style.content}>
         <div className={style.statusContainer}>
