@@ -26,6 +26,19 @@ function EditTask() {
     setInputs({ ...inputs, [target.name]: target.value });
   };
 
+  const deleteTask = async () => {
+    await fetchWithTimeout(`${process.env.REACT_APP_URL}/task/${task?.id}/delete`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: (user as IUser).token,
+      },
+    });
+    setReload(true);
+    navigate('../');
+  };
+
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     const target = event.target as typeof event.target & {
@@ -111,7 +124,7 @@ function EditTask() {
         </select>
       </label>
       <button className={style.buttom} type="submit">Save</button>
-
+      <button onClick={deleteTask} className={style.buttom} type="button">Delete</button>
     </form>
   );
 }
