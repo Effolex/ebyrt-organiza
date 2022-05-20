@@ -7,7 +7,7 @@ The project is using SupaBase to host the DataBase
 
 Two heroku nodeJS apps (a proxy and the API itself)
 
-and the Frontend is deployed at Vercel
+and the Frontend is deployed at [Vercel](https://ebyrt-organiza.vercel.app/)
 
 so your connhection will go as follows:
 
