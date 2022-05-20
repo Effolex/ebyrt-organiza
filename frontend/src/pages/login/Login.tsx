@@ -1,6 +1,7 @@
-import React, { ChangeEvent, useContext, useState } from 'react';
+import React, {
+  ChangeEvent, useContext, useEffect, useState,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { setInterval } from 'timers/promises';
 import { TodoContextType } from '../../@types/Todo';
 import { todoContext } from '../../context/todoContext';
 import fetchWithTimeout from '../../helper/fetchWithTimeout';
@@ -15,6 +16,15 @@ export default function Login() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ error: '' });
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setUser(user);
+      navigate('../dashboard');
+    }
+  }, []);
 
   const handleInput = ({ target: { name, value } }: ChangeEvent<HTMLInputElement>) => {
     if (name === 'email') {
@@ -42,7 +52,9 @@ export default function Login() {
         setError(json);
         return;
       }
-      setUser({ ...json.user, token: json.token });
+      const fetchedUser = { ...json.user, token: json.token };
+      localStorage.setItem('user', JSON.stringify(fetchedUser));
+      setUser(fetchedUser);
       navigate('../dashboard');
     } catch (e) {
       setError({ error: 'Request Timeout!' });

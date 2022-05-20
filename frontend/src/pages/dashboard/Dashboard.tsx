@@ -17,7 +17,7 @@ const Dashboard = () => {
         </div>
         <Link to="new">Add new</Link>
         <Link to=" ">Task list</Link>
-        <Link to="/">Log Out</Link>
+        <Link onClick={() => localStorage.clear()} to="/">Log Out</Link>
       </div>
       <Outlet />
     </div>

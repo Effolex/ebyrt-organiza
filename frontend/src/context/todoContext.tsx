@@ -36,6 +36,14 @@ const TodoProvider:React.FC<MyContextProps> = ({ children }) => {
     }
   }, [user, reload]);
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const restored = JSON.parse(storedUser);
+      setUser(restored);
+    }
+  }, []);
+
   const values:TodoContextType = useMemo(() => ({
     tasks,
     user,
