@@ -17,15 +17,6 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ error: '' });
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
-      setUser(user);
-      navigate('../dashboard');
-    }
-  }, []);
-
   const handleInput = ({ target: { name, value } }: ChangeEvent<HTMLInputElement>) => {
     if (name === 'email') {
       setEmail(value);
