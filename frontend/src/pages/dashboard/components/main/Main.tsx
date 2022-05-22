@@ -15,7 +15,7 @@ import sortDesc from '../../../../assets/sortDesc.png';
 import helpers from '../../../../helper';
 
 const {
-  changeStatus, incrementTagArray, dateFormater, fetchWithTimeout
+  changeStatus, incrementTagArray, dateFormater, fetchWithTimeout,
 } = helpers;
 
 function Main() {
