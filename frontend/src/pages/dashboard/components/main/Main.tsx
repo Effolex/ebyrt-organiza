@@ -10,18 +10,13 @@ import { ITaskFilter } from './main';
 import style from './main.module.css';
 import leftArrow from '../../../../assets/rightArrow.png';
 import editIcon from '../../../../assets/edit.png';
-import fetchWithTimeout from '../../../../helper/fetchWithTimeout';
-import dateFormater from '../../../../helper/dateFormater';
-import incrementTagArray from '../../../../helper/incrementTagArray';
 import sortAsc from '../../../../assets/sortAsc.png';
 import sortDesc from '../../../../assets/sortDesc.png';
+import helpers from '../../../../helper';
 
-const changeStatus = (arrow: string, status: string) => {
-  if (status === 'pendente') {
-    return (arrow === 'Left Arrow') ? 'em andamento' : 'pronto';
-  }
-  return 'pendente';
-};
+const {
+  changeStatus, incrementTagArray, dateFormater, fetchWithTimeout
+} = helpers;
 
 function Main() {
   const {
