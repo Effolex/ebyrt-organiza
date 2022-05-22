@@ -76,7 +76,7 @@ export default function Login() {
       {(loading)
         ? (
           <div className={style.loadingio}>
-            <div className={style.ldio}>
+            <div className="ldio">
               <div />
               <div />
             </div>
